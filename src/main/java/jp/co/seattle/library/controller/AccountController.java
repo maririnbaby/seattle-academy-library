@@ -75,7 +75,9 @@ public class AccountController {
         usersService.registUser(userInfo);
 
         
+
         return "login";
+
     }
 
 }
