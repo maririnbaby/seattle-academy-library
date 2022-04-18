@@ -75,13 +75,11 @@ public class AccountController {
         usersService.registUser(userInfo);
 
         
-<<<<<<< Updated upstream
+
 
         return "login";
 
-=======
-        return "home";
->>>>>>> Stashed changes
+
     }
 
 }
