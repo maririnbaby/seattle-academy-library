@@ -55,6 +55,14 @@ public class BooksService {
 
         return bookDetailsInfo;
     }
+    
+    public void deleteBookInfo(int bookId) {
+
+        // JSPに渡すデータを設定する
+        String sql = "DELETE FROM books WHERE id = "+ bookId ;
+        jdbcTemplate.update(sql);
+       
+    }
 
     /**
      * 書籍を登録する
@@ -72,4 +80,8 @@ public class BooksService {
 
         jdbcTemplate.update(sql);
     }
+
+	
+		
+	
 }
