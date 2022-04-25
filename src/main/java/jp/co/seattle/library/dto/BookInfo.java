@@ -23,7 +23,7 @@ public class BookInfo {
 
     private String thumbnail;
 
-	private int ISBN;
+	private int isbn;
 
 	private String explain;
 
@@ -39,7 +39,7 @@ public class BookInfo {
         this.publisher = publisher;
         this.publishDate = publishDate;
         this.thumbnail = thumbnail;
-        this.ISBN = ISBN;
+        this.isbn = ISBN;
         this.explain = explain;
     }
 

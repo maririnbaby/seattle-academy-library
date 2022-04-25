@@ -27,8 +27,6 @@ public class AddBooksController {
     @Autowired
     private BooksService booksService;
     
-    @Autowired
-    private BooksService bookdService;
 
     @Autowired
     private ThumbnailService thumbnailService;
@@ -68,7 +66,7 @@ public class AddBooksController {
         bookInfo.setAuthor(author);
         bookInfo.setPublisher(publisher);
         bookInfo.setPublishDate(publishDate);
-        bookInfo.setISBN(ISBN);
+        bookInfo.setIsbn(ISBN);
         bookInfo.setExplanation(explanation);
 
         // クライアントのファイルシステムにある元のファイル名を設定する
@@ -106,19 +104,19 @@ public class AddBooksController {
         	
         }
         
-        if (!(PublishDateCheck)) {
+        if (!PublishDateCheck) {
         	
         	model.addAttribute("dateError","出版日は、半角数字、YYYYMMDD形式で入力してください。");
         	
        } 
         
-        if (!(ISBNCheck)) {
+        if (!ISBNCheck) {
         	
         	model.addAttribute("ISBNError","ISBNは半角数字で、10桁か13桁で入力してください。");
         	
         }
         
-        if (!(ISBNCheck)||!(PublishDateCheck)||(hissuCheckNull)) {
+        if (!ISBNCheck||!PublishDateCheck||hissuCheckNull) {
         	model.addAttribute("bookInfo", bookInfo);
         	return "addBook";
         
@@ -133,7 +131,8 @@ public class AddBooksController {
         	
 
         // TODO 登録した書籍の詳細情報を表示するように実装
-        model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(booksService.MaxId()));
+     	   int IdMax = booksService.maxId();
+        model.addAttribute("bookDetailsInfo", booksService.getBookInfo(IdMax));
         //  詳細画面に遷移する
         
         return "details";
