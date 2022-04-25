@@ -97,7 +97,7 @@ public class AddBooksController {
         
         boolean hissuCheckNull = (title.isEmpty() || author.isEmpty() || publisher.isEmpty() || publishDate.isEmpty());
         boolean PublishDateCheck = publishDate.matches("^[0-9]{8}$");
-        boolean ISBNCheck = ISBN.matches("^[0-9]{10}{13}$");
+        boolean ISBNCheck = ISBN.matches("^[0-9]{10}||[0-9]{13}$");
         
 
         if (hissuCheckNull) {
