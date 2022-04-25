@@ -56,6 +56,12 @@ public class BooksService {
         return bookDetailsInfo;
     }
     
+    public int MaxId() {
+    	String sql ="SELECT Max(id) FROM books";
+    	int MaxId =jdbcTemplate.queryForObject(sql,int.class);
+    	return MaxId;
+    }
+    
     public void deleteBookInfo(int bookId) {
 
         // JSPに渡すデータを設定する
@@ -71,10 +77,13 @@ public class BooksService {
      */
     public void registBook(BookDetailsInfo bookInfo) {
 
-        String sql = "INSERT INTO books (title, author,publisher,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
+        String sql = "INSERT INTO books (title, author,publisher,thumbnail_name,thumbnail_url, publish_date, ISBN, explanation, reg_date,upd_date) VALUES ('"
                 + bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"
                 + bookInfo.getThumbnailName() + "','"
-                + bookInfo.getThumbnailUrl() + "',"
+                + bookInfo.getThumbnailUrl() + "','"
+                + bookInfo.getPublishDate() + "','"
+                + bookInfo.getISBN() + "','"
+                + bookInfo.getExplanation() + "',"
                 + "now(),"
                 + "now())";
 
