@@ -54,8 +54,8 @@ public class BooksService {
     /**
     * 書籍IDに紐づく書籍詳細情報を取得する
     *
-    * @param bookId 書籍ID
-    * @return 書籍情報
+    * @param maxId 最新の書籍ID
+    * @return 最新の書籍情報
     */
     
     public int maxId() {
@@ -63,6 +63,14 @@ public class BooksService {
     	int maxId =jdbcTemplate.queryForObject(sql,int.class);
     	return maxId;
     }
+    
+    
+    /**
+     * 書籍IDに紐づく書籍詳細情報を取得する
+     *
+     * @param bookId 書籍ID
+     * @return　書籍情報
+     */
     
     public void deleteBookInfo(int bookId) {
 
