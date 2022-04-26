@@ -39,12 +39,7 @@ public class BooksService {
         return getedBookList;
     }
 
-    /**
-     * 書籍IDに紐づく書籍詳細情報を取得する
-     *
-     * @param bookId 書籍ID
-     * @return 書籍情報
-     */
+    
     public BookDetailsInfo getBookInfo(int bookId) {
 
         // JSPに渡すデータを設定する
@@ -55,6 +50,27 @@ public class BooksService {
 
         return bookDetailsInfo;
     }
+    
+    /**
+    * 書籍IDに紐づく書籍詳細情報を取得する
+    *
+    * @param maxId 最新の書籍ID
+    * @return 最新の書籍情報
+    */
+    
+    public int maxId() {
+    	String sql ="SELECT Max(id) FROM books";
+    	int maxId =jdbcTemplate.queryForObject(sql,int.class);
+    	return maxId;
+    }
+    
+    
+    /**
+     * 
+     *書籍を削除する
+     * 
+     * @param 書籍情報
+     */
     
     public void deleteBookInfo(int bookId) {
 
@@ -71,10 +87,13 @@ public class BooksService {
      */
     public void registBook(BookDetailsInfo bookInfo) {
 
-        String sql = "INSERT INTO books (title, author,publisher,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
+        String sql = "INSERT INTO books (title, author,publisher,thumbnail_name,thumbnail_url, publish_date, ISBN, explanation, reg_date,upd_date) VALUES ('"
                 + bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"
                 + bookInfo.getThumbnailName() + "','"
-                + bookInfo.getThumbnailUrl() + "',"
+                + bookInfo.getThumbnailUrl() + "','"
+                + bookInfo.getPublishDate() + "','"
+                + bookInfo.getIsbn() + "','"
+                + bookInfo.getExplanation() + "',"
                 + "now(),"
                 + "now())";
 
