@@ -79,7 +79,7 @@ public class BooksService {
         jdbcTemplate.update(sql);
        
     }
-
+    
     /**
      * 書籍を登録する
      *
@@ -100,7 +100,26 @@ public class BooksService {
         jdbcTemplate.update(sql);
     }
 
-	
-		
-	
+    /**
+     * 書籍を編集する
+     *
+     */
+    
+    public void editBook(BookDetailsInfo bookInfo) {
+    	String sql = "UPDATE books SET title ='" + bookInfo.getTitle() 
+    	+ "', author = '" + bookInfo.getAuthor() 
+    	+ "', publisher = '" + bookInfo.getPublisher() 
+    	+ "', publish_date = '" + bookInfo.getPublishDate() 
+    	+ "', thumbnail_name = '" + bookInfo.getThumbnailName()
+    	+ "', thumbnail_url = '" + bookInfo.getThumbnailUrl() 
+    	+ "', isbn ='"  + bookInfo.getIsbn() 
+        + "', upd_date = now(), explanation ='" + bookInfo.getExplanation() 
+        + "' Where id = " + bookInfo.getBookId();
+    	
+    	 jdbcTemplate.update(sql);
+    }
+
+
 }
+
+
