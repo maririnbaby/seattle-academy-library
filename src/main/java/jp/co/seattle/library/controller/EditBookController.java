@@ -54,7 +54,7 @@ public class EditBookController {
             @RequestParam("publisher") String publisher,
             @RequestParam("thumbnail") MultipartFile file,
             @RequestParam("publishDate") String publishDate,
-            @RequestParam("ISBN") String ISBN,
+            @RequestParam("ISBN") String isbn,
             @RequestParam("explanation") String explanation,
             Model model) {
         logger.info("Welcome insertBooks.java! The client locale is {}.", locale);
@@ -66,7 +66,7 @@ public class EditBookController {
         bookInfo.setAuthor(author);
         bookInfo.setPublisher(publisher);
         bookInfo.setPublishDate(publishDate);
-        bookInfo.setIsbn(ISBN);
+        bookInfo.setIsbn(isbn);
         bookInfo.setExplanation(explanation);
 
         // クライアントのファイルシステムにある元のファイル名を設定する
@@ -95,7 +95,7 @@ public class EditBookController {
         
         boolean hissuCheckNull = (title.isEmpty() || author.isEmpty() || publisher.isEmpty() || publishDate.isEmpty());
         boolean PublishDateCheck = publishDate.matches("^[0-9]{8}$");
-        boolean ISBNCheck = ISBN.matches("^[0-9]{10}||[0-9]{13}$");
+        boolean ISBNCheck = isbn.matches("^[0-9]{10}||[0-9]{13}$");
         
 
         if (hissuCheckNull) {
