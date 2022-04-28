@@ -121,9 +121,6 @@ public class AddBooksController {
         	return "addBook";
         
         }
-
-     
-      
         
         // 書籍情報を新規登録する
          booksService.registBook(bookInfo);
