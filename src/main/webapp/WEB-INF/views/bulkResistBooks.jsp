@@ -28,3 +28,36 @@
             </ul>
         </div>
     </header>
+    <main>
+        <form action="<%=request.getContextPath()%>/bulkResistBooks" method="post" enctype="multipart/form-data" id="data_upload_form">
+    <div class="bulk_form">
+    <h2>CSVファイルをアップロードすることで、書籍を一括登録することができます。</h2>
+    <div class="caution">
+    <p>「書籍名,著者名,出版社,出版日,ISBN」の形式で記載してください。</p>
+    <p>※サムネイル画像は一括登録できません。編集画面で１冊編集してください。</p>
+    </div> 
+             
+  
+   <input type="file" name="file" accept=".csv">
+ 
+    <div class="edtDelBookBtn_box">
+                <button type="submit" id="bulk-btn" class="btn_bulkRegist">一括登録</button>
+            </div>
+            <div class="content_right">
+            <c:forEach var="bulkError" items="${bulkError}">
+            <c:if test="${!empty bulkError}">
+            <div class="error" >
+                <p>${bulkError}</p>
+            </div></c:if>
+            </c:forEach>
+                           <c:if test="${!empty nofile}">
+                           <div class="error" > 
+                           <p>${nofile}</p>
+                           </div></c:if>
+                           </div>
+    </div>          
+              </form>
+                 </main>
+                 </body>
+                 </html>
+               

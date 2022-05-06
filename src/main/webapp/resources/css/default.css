@@ -113,6 +113,7 @@ input[type=button].primary {
     border-radius: 0.2em;
     background: #ffeeee;
 }
+
 /* 入力フォームのパーツ：ボタン */
 .button {
     display: block;
