@@ -22,6 +22,10 @@ import org.springframework.web.multipart.MultipartFile;
 import jp.co.seattle.library.dto.BookDetailsInfo;
 import jp.co.seattle.library.service.BooksService;
 
+
+/**
+ * Handles requests for the application home page.
+ */
 @Controller //APIの入り口
 public class BulkResistBooksController {
     final static Logger logger = LoggerFactory.getLogger(BulkResistBooksController.class);
@@ -35,6 +39,14 @@ public class BulkResistBooksController {
         return "bulkResistBooks";
     }
    
+    /**
+     * 書籍情報を更新する
+     * @param locale ロケール情報
+     * @param file サムネイルファイル
+     * @param model モデル
+     * @return 遷移先画面
+     */
+    
     @Transactional
     @RequestMapping(value = "/bulkResistBooks", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
     public String bulkResistBooks(Locale locale,@RequestParam("file") MultipartFile file, Model model) {
