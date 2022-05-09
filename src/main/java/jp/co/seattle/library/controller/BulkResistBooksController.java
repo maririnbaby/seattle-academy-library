@@ -62,18 +62,10 @@ public class BulkResistBooksController {
          
           // readLineメソッドで1行ずつ読み込んでnull値が出力されるまで読み込む。
           while ((line = br.readLine()) != null) {
-        	 
-            final String[] split = line.split(",", -1);
-            count ++;
-            
-            // パラメータで受け取った書籍情報をDtoに格納する。
-            BookDetailsInfo bookInfo = new BookDetailsInfo();
-            bookInfo.setTitle(split[0]);
-            bookInfo.setAuthor(split[1]);
-            bookInfo.setPublisher(split[2]);
-            bookInfo.setPublishDate(split[3]);
-            bookInfo.setIsbn(split[4]);
-            
+        	
+        	  final String[] split = line.split(",", -1);
+              count ++;
+        	  
             //validation check
             boolean hissuCheckNull = (split[0].isEmpty() || split[1].isEmpty() || split[2].isEmpty() || split[3].isEmpty());
             boolean PublishDateCheck = split[3].matches("^[0-9]{8}$");
@@ -83,11 +75,20 @@ public class BulkResistBooksController {
             //リストにエラーをためる
            bulkError.add(count + "行目でバリデーションエラーが起きました。");
                      }
+            
+
+            // パラメータで受け取った書籍情報をDtoに格納する。
+            BookDetailsInfo bookInfo = new BookDetailsInfo();
+            bookInfo.setTitle(split[0]);
+            bookInfo.setAuthor(split[1]);
+            bookInfo.setPublisher(split[2]);
+            bookInfo.setPublishDate(split[3]);
+            bookInfo.setIsbn(split[4]);
+            
            regist.add(bookInfo);
            
           }
-          
-
+         
           if(regist.size() == 0) {
         	  model.addAttribute("nofile", "ファイルの中身がありません。");
         	  return "bulkResistBooks";
