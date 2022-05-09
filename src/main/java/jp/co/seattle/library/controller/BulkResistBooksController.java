@@ -28,7 +28,7 @@ import jp.co.seattle.library.service.BooksService;
  */
 @Controller //APIの入り口
 public class BulkResistBooksController {
-    final static Logger logger = LoggerFactory.getLogger(BulkResistBooksController.class);
+    static Logger logger = LoggerFactory.getLogger(BulkResistBooksController.class);
 
     @Autowired
     private BooksService booksService;
@@ -63,7 +63,7 @@ public class BulkResistBooksController {
           // readLineメソッドで1行ずつ読み込んでnull値が出力されるまで読み込む。
           while ((line = br.readLine()) != null) {
         	
-        	  final String[] split = line.split(",", -1);
+        	  String[] split = line.split(",", -1);
               count ++;
         	  
             //validation check

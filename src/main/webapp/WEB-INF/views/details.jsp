@@ -43,6 +43,10 @@
                         </c:if> <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}">
                     </a>
                 </div>
+                <c:if test="${!empty hissuError || !empty dateError || !empty ISBNError}">
+                           <div class="error" > 
+                           <p>${hissuError}</p>
+                            </div></c:if>
             </div>
             <div class="content_right">
                 <div>
