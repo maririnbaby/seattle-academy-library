@@ -83,7 +83,7 @@ public class BooksService {
     /**
      * 書籍を登録する
      *
-     * @param bookInfo 書籍情報
+     * @param bookInfo 書籍情報return
      */
     public void registBook(BookDetailsInfo bookInfo) {
 

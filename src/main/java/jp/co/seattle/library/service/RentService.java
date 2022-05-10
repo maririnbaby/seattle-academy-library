@@ -39,4 +39,20 @@ public class RentService {
     int countId =jdbcTemplate.queryForObject(sql,int.class);
 	return countId;
     }
+    
+    /**
+     * 
+     *書籍を返却する
+     * 
+     * @param 書籍情報
+     */
+    
+    public void returnBook(int bookId) {
+
+        // JSPに渡すデータを設定する
+        String sql = "DELETE FROM rent WHERE book_id = "+ bookId ;
+        jdbcTemplate.update(sql);
+       
+    }
+    
 }
