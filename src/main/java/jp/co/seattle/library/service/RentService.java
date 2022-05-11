@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-//import jp.co.seattle.library.dto.BookDetailsInfo;
 
 
 /**
@@ -21,9 +20,8 @@ public class RentService {
     private JdbcTemplate jdbcTemplate;
 
     /**
-     * 書籍を貸し出し登録する
-     *
-     * @param bookInfo 書籍情報
+     * 貸出登録
+     * @param bookId
      */
     public void rentBook(int bookId) {
 
@@ -34,6 +32,10 @@ public class RentService {
         jdbcTemplate.update(sql);
     }
     
+    /**
+     * rentテーブル
+     * @return カウント数
+     */
     public int countId() {
     String sql = "SELECT COUNT (book_id) FROM rent";
     int countId =jdbcTemplate.queryForObject(sql,int.class);
