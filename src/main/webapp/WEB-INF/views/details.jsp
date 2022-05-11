@@ -35,18 +35,18 @@
             <div class="content_left">
                 <span>書籍の画像</span>
                 <div class="book_thumnail">
-                    <a href="${bookDetailsInfo.thumbnailUrl}" data-lightbox="image-1"> 
-                    <c:if test="${bookDetailsInfo.thumbnailUrl == 'null'}">
+                    <a href="${bookDetailsInfo.thumbnailUrl}" data-lightbox="image-1"> <c:if test="${bookDetailsInfo.thumbnailUrl == 'null'}">
                             <img class="book_noimg" src="resources/img/noImg.png">
                         </c:if> <c:if test="${bookDetailsInfo.thumbnailUrl != 'null'}">
                             <img class="book_noimg" src="${bookDetailsInfo.thumbnailUrl}">
                         </c:if> <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}">
                     </a>
                 </div>
-                <c:if test="${!empty hissuError || !empty dateError || !empty ISBNError}">
-                           <div class="error" > 
-                           <p>${hissuError}</p>
-                            </div></c:if>
+                <c:if test="${!empty rentError}">
+                    <div class="error">
+                        <p>${rentError}</p>
+                    </div>
+                </c:if>
             </div>
             <div class="content_right">
                 <div>
@@ -61,15 +61,15 @@
                     <span>出版社</span>
                     <p>${bookDetailsInfo.publisher}</p>
                 </div>
-                 <div>
+                <div>
                     <span>出版日</span>
                     <p>${bookDetailsInfo.publishDate}</p>
                 </div>
-                 <div>
+                <div>
                     <span>ISBN</span>
                     <p>${bookDetailsInfo.isbn}</p>
                 </div>
-                 <div>
+                <div>
                     <span>説明文</span>
                     <p>${bookDetailsInfo.explanation}</p>
                 </div>
@@ -78,16 +78,16 @@
         <div class="edtDelBookBtn_box">
             <form method="post" action="rentBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook">借りる</button>
-                 </form>
+            </form>
             <form method="post" action="returnBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook">返す</button>
-                 </form>
+            </form>
             <form method="post" action="editBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_editBook">編集</button>
-                 </form>
+            </form>
             <form method="post" action="deleteBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_deleteBook">削除</button>
-                 </form>          
+            </form>
         </div>
     </main>
 </body>
