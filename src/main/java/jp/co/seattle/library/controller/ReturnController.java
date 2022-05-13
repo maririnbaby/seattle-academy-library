@@ -26,15 +26,12 @@ public class ReturnController {
 	    private BooksService booksService;
 	 
 	 /**
-	     * 書籍情報を登録する
-	     * @param locale ロケール情報
-	     * @param title 書籍名
-	     * @param author 著者名
-	     * @param publisher 出版社
-	     * @param file サムネイルファイル
-	     * @param model モデル
-	     * @return 遷移先画面
-	     */
+	  * 
+	  * @param locale
+	  * @param bookId
+	  * @param model
+	  * @return details
+	  */
 	    @Transactional
 	    @RequestMapping(value = "/returnBook", method = RequestMethod.POST)
 	    public String returnBook(Locale locale,
