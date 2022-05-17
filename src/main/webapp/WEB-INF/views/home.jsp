@@ -30,7 +30,7 @@
         <form method="post" action="serch">
             <input type="text" name="title" class="search1">
             <button type="submit" name="serch_title" class="search_box">検索</button>
-        </form></div>
+        <input type="radio" name="radiobutton" value="bubun">部分一致 <input type="radio" name="radiobutton" value="kanzen">完全一致</form></div>
         <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkResistBooks" class="btn_bulk_book">一括登録</a>
         <div class="content_body">
             <c:if test="${!empty resultMessage}">
