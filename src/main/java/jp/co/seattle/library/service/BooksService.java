@@ -39,6 +39,12 @@ public class BooksService {
 		return getedBookList;
 	}
 
+	/**
+	 * 書籍詳細情報の取得
+	 * 
+	 * @param bookId
+	 * @return 書籍詳細情報
+	 */
 	public BookDetailsInfo getBookInfo(int bookId) {
 
 		// JSPに渡すデータを設定する
@@ -63,10 +69,9 @@ public class BooksService {
 	}
 
 	/**
+	 * 書籍情報を削除する
 	 * 
-	 * 書籍を削除する
-	 * 
-	 * @param 書籍情報
+	 * @param bookId
 	 */
 
 	public void deleteBookInfo(int bookId) {
@@ -78,6 +83,7 @@ public class BooksService {
 	}
 
 	/**
+	 * 書籍を借りる
 	 * 
 	 * @param bookId
 	 * @return 書籍情報

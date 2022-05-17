@@ -37,23 +37,22 @@ public class DeleteBookController {
 	public String deleteBook(Locale locale, @RequestParam("bookId") Integer bookId, Model model) {
 		logger.info("Welcome delete! The client locale is {}.", locale);
 
-		int rent = booksService.rent(bookId);
+		int rentBookId = booksService.rent(bookId);
 
 		// 貸出されてなければ
-		if (rent == 0) {
-			// 削除する
-			booksService.deleteBookInfo(bookId);
-			// 書籍一覧に戻る
-			model.addAttribute("bookList", booksService.getBookList());
-			return "home";
-
-		} else {
-			// 貸出中だったら
+		if (rentBookId == bookId) {
 			model.addAttribute("lendingError", "貸し出し中なので削除できません。");
 			// 画面やり直し
 			model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
 			return "details";
 
+		} else {
+			// 削除する
+			booksService.deleteBookInfo(bookId);
+			// 書籍一覧に戻る
+			model.addAttribute("bookList", booksService.getBookList());
+			return "home";
+			// 貸出中だったら
 		}
 	}
 }
