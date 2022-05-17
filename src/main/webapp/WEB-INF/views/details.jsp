@@ -52,6 +52,11 @@
                         <p>${returnError}</p>
                     </div>
                 </c:if>
+                <c:if test="${!empty lendingError}">
+                    <div class="error">
+                        <p>${lendingError}</p>
+                    </div>
+                </c:if>
             </div>
             <div class="content_right">
                 <div>
