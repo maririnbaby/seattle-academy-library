@@ -26,11 +26,11 @@
     </header>
     <main>
         <h1>Home</h1>
-        <span>書籍名で検索</span>
+        <div class="tuika">
         <form method="post" action="serch">
             <input type="text" name="title" class="search1">
             <button type="submit" name="serch_title" class="search_box">検索</button>
-        </form>
+        </form></div>
         <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkResistBooks" class="btn_bulk_book">一括登録</a>
         <div class="content_body">
             <c:if test="${!empty resultMessage}">
