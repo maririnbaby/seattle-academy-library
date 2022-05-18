@@ -21,6 +21,14 @@ public class SerchContoroller {
 	@Autowired
 	private BooksService booksService;
 
+	/**
+	 * 検索機能
+	 * 
+	 * @param locale
+	 * @param title
+	 * @param model
+	 * @return home
+	 */
 	@Transactional
 	@RequestMapping(value = "/serch", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	public String serch(Locale locale, @RequestParam("title") String title, Model model) {
