@@ -10,6 +10,7 @@
 <link href="<c:url value="/resources/css/default.css" />" rel="stylesheet" type="text/css">
 <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 <link href="<c:url value="/resources/css/home.css" />" rel="stylesheet" type="text/css">
+
 </head>
 <body class="wrapper">
     <header>
@@ -27,11 +28,12 @@
     <main>
         <h1>Home</h1>
         <div class="tuika">
-        <form method="post" action="serch">
-            <input type="text" name="title" class="search1">
-            <button type="submit" name="serch_title" class="search_box">検索</button>
-        </form></div>
-        <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkResistBooks" class="btn_bulk_book">一括登録</a>
+            <form method="post" action="serch">
+                <input type="text" name="title" class="search1">
+                <button type="submit" name="serch_title" class="search_box">検索</button>
+            </form>
+        </div>
+        <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkResistBooks" class="btn_bulk_book">一括登録</a><a href="<%=request.getContextPath()%>/historyBook" class="btn_bulk_book">貸出履歴一覧</a>
         <div class="content_body">
             <c:if test="${!empty resultMessage}">
                 <div class="error_msg">${resultMessage}</div>
