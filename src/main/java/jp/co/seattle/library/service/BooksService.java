@@ -33,18 +33,27 @@ public class BooksService {
 
 		// TODO 取得したい情報を取得するようにSQLを修正
 		List<BookInfo> getedBookList = jdbcTemplate.query(
-				"select id, title, author, publisher, publish_date, thumbnail_url from books order by title asc;",
+				"select id, title, author, publisher, publish_date, thumbnail_url from books order by title asc",
 				new BookInfoRowMapper());
 
 		return getedBookList;
 	}
 
 	/**
-	 * 書籍詳細情報の取得
+	 * 書籍を検索する
 	 * 
-	 * @param bookId
-	 * @return 書籍詳細情報
+	 * @param title
+	 * @return 書籍リスト
 	 */
+	public List<BookInfo> serch(String title) {
+		// TODO 取得したい情報を取得するようにSQLを修正
+		List<BookInfo> getedBookList = jdbcTemplate
+				.query("select id, title, author, publisher, publish_date, thumbnail_url from books where title like '%"
+						+ title + "%' order by title asc", new BookInfoRowMapper());
+
+		return getedBookList;
+	}
+
 	public BookDetailsInfo getBookInfo(int bookId) {
 
 		// JSPに渡すデータを設定する
