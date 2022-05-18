@@ -68,13 +68,12 @@ input {
 
 .tuika{
 	display:flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 	
 }
 .search_box {
 	position: relative;
 	margin-left: -5px;
-	display: flex;
 }
 
 .search1 {
