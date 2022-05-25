@@ -42,7 +42,7 @@ public class BooksService {
 	/**
 	 * 書籍を検索する
 	 * 
-	 * @param title
+	 * @param title 
 	 * @return 書籍リスト
 	 */
 	public List<BookInfo> serch(String title) {
@@ -58,7 +58,7 @@ public class BooksService {
 
 		// JSPに渡すデータを設定する
 
-		String sql = "SELECT *, CASE WHEN book_id is null then '貸出可' ELSE '貸出中' END as status FROM books left outer JOIN rent ON books.id = rent.book_id where books.id=" + bookId;
+		String sql = "SELECT *, CASE WHEN rent_date is null then '貸出可' ELSE '貸出中' END as status FROM books left outer JOIN rent ON books.id = rent.book_id where books.id=" + bookId;
 		
 		BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
 
@@ -91,6 +91,14 @@ public class BooksService {
 		jdbcTemplate.update(sql);
 
 	}
+	
+	public void deleteRentBook(int bookId) {
+
+		// JSPに渡すデータを設定する
+		String sql = "DELETE FROM rent WHERE book_id = " + bookId;
+		jdbcTemplate.update(sql);
+
+	}
 
 	/**
 	 * 書籍を借りる
@@ -110,7 +118,7 @@ public class BooksService {
 			return 0;
 		}
 	}
-
+	
 	/**
 	 * 
 	 * 書籍登録
@@ -119,7 +127,7 @@ public class BooksService {
 	 */
 	public void registBook(BookDetailsInfo bookInfo) {
 
-		String sql = "INSERT INTO books (title, author,publisher,thumbnail_name,thumbnail_url, publish_date, ISBN, explanation, reg_date,upd_date) VALUES ('"
+		String sql = "INSERT INTO books (title, author,publisher,thumbnail_name,thumbnail_url, publish_date, ISBN, explanation, reg_date, upd_date) VALUES ('"
 				+ bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"
 				+ bookInfo.getThumbnailName() + "','" + bookInfo.getThumbnailUrl() + "','" + bookInfo.getPublishDate()
 				+ "','" + bookInfo.getIsbn() + "','" + bookInfo.getExplanation() + "'," + "now()," + "now())";

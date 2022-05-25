@@ -41,20 +41,19 @@ public class RentController {
 	public String rentBook(Locale locale, @RequestParam("bookId") int bookId, Model model) {
 		logger.info("Welcome rentBook.java! The client locale is {}.", locale);
 
-		int before = rentService.countId();
+		int exist = rentService.exist(bookId);
+		int rentDateCheck = rentService.rentDateCheck(bookId);
 
-		// パラメータで受け取った書籍情報をDtoに格納する。
+		if (exist == 0) {
 		rentService.rentBook(bookId);
+		} else if (rentDateCheck == 0){
+		rentService.rentUpd(bookId);
+		} else if (!(rentDateCheck == 0)) {
+			model.addAttribute("rentError", "貸し出し中です。");
+		}
 
 		model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
 
-		int after = rentService.countId();
-
-		if (before == after) {
-			model.addAttribute("rentError", "貸し出し中です。");
-
-			return "details";
-		}
 		return "details";
 	}
 

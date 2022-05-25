@@ -65,15 +65,16 @@ input {
 }
 
 /* ここから追加 */
-
-.tuika{
-	display:flex;
+.tuika {
+	display: flex;
 	justify-content: space-between;
-	
 }
+
 .search_box {
 	position: relative;
 	margin-left: -5px;
+	display: flex;
+	background-color: #66cdaa;
 }
 
 .search1 {
@@ -82,7 +83,6 @@ input {
 	width: 325px;
 	padding: 4px 10px;
 	border: 1px solid #2196f3;
-	
 }
 
 .search1:hover {

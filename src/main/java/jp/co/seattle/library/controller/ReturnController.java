@@ -15,44 +15,40 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jp.co.seattle.library.service.BooksService;
 import jp.co.seattle.library.service.RentService;
 
-@Controller //APIの入り口
+@Controller // APIの入り口
 public class ReturnController {
 
 	final static Logger logger = LoggerFactory.getLogger(ReturnController.class);
-	
-	 @Autowired
-	    private RentService rentService;
-	 @Autowired
-	    private BooksService booksService;
-	 
-	 /**
-	  * 
-	  * @param locale
-	  * @param bookId
-	  * @param model
-	  * @return details
-	  */
-	    @Transactional
-	    @RequestMapping(value = "/returnBook", method = RequestMethod.POST)
-	    public String returnBook(Locale locale,
-	            @RequestParam("bookId") int bookId,
-	            Model model) {
-	      logger.info("Welcome returnBook.java! The client locale is {}.", locale);
-	      
-	      int before = rentService.countId();
-	      
-	   // 書籍を返却する
-	         rentService.returnBook(bookId);
-	        model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
-	      
-	        int after = rentService.countId();
-	        
-	      if (before == after) {
-		      model.addAttribute("returnError","貸し出しされていません。");
-		    	
-				return "details";
-		    }
-	      
+
+	@Autowired
+	private RentService rentService;
+	@Autowired
+	private BooksService booksService;
+
+	/**
+	 * 返却機能
+	 * 
+	 * @param locale
+	 * @param bookId
+	 * @param model
+	 * @return details
+	 */
+	@Transactional
+	@RequestMapping(value = "/returnBook", method = RequestMethod.POST)
+	public String returnBook(Locale locale, @RequestParam("bookId") int bookId, Model model) {
+		logger.info("Welcome returnBook.java! The client locale is {}.", locale);
+
+		//int returnDateCheck = rentService.returnDateCheck(bookId);
+		int rentDateCheck = rentService.rentDateCheck(bookId);
+
+		if (rentDateCheck > 0) {
+			// 書籍を返却する
+			rentService.returnUpd(bookId);
+
+		} else if (rentDateCheck == 0) {
+			model.addAttribute("returnError", "貸し出しされていません。");
+		}
+		model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
 		return "details";
-}
+	}
 }

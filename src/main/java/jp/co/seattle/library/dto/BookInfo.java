@@ -26,7 +26,7 @@ public class BookInfo {
 	private int isbn;
 
 	private String explain;
-
+	
     public BookInfo() {
 
     }
@@ -41,6 +41,6 @@ public class BookInfo {
         this.thumbnail = thumbnail;
         this.isbn = ISBN;
         this.explain = explain;
-    }
+    } 
 
 }
